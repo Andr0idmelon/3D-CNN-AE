@@ -21,7 +21,6 @@ class MyDataModule(LightningDataModule):
 
     #只在gpu0上调用一次，数据要在这里处理好
     def prepare_data(self):
-        #分开涡量和压力 涡量
         with open(r'myModule/case1-128-128-128-wx-train.pickle','rb') as f:
             train_data=pickle.load(f)[:,0:1,:,:,:]
         train_set=MyDataset(train_data)
@@ -33,7 +32,7 @@ class MyDataModule(LightningDataModule):
         with open('./dataset.pickle','wb') as p:
             pickle.dump((train_set,val_set),p,protocol = 4)
 
-    #在每个gpu上都会调用,在这里指出哪些是训练集、验证集
+    #在每个gpu上都会调用,在这里指定数据集
     def setup(self,stage=None):
         with open('./dataset.pickle','rb') as g:
             self.train_data,self.val_data=pickle.load(g)
