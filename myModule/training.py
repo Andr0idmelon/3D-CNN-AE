@@ -8,7 +8,7 @@ from pytorch_lightning import Trainer
 
 
 def training(params):
-    wandb_logger=WandbLogger(name='0403-multiCNN-wx-128',project="3D-CNN-AE",log_model=True)
+    wandb_logger=WandbLogger(name='demo_name',project="project_name",log_model=True)
     data=MyDataModule(params)
     model=autoencoder(params)
     callbacks=set_callbacks(params)
