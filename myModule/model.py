@@ -61,7 +61,7 @@ class network(nn.Module):
             nn.Conv3d(in_channel,out_channel,conv_kernelsize,conv_stride,conv_padding),
             nn.BatchNorm3d(num_features=out_channel),
             acts[activation],
-            nn.MaxPool3d(kernel_size=(2,2,2),stride=(2,2,2))#待察
+            nn.MaxPool3d(kernel_size=(2,2,2),stride=(2,2,2))
         )
 
     @staticmethod
